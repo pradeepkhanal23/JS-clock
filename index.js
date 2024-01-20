@@ -1,71 +1,84 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-const now = new Date();
+const canvasHeight = canvas.height;
+const canvasWidth = canvas.width;
+const centerX = canvasWidth / 2;
+const centerY = canvasHeight / 2;
 
 function clock() {
-  //first drawing the clock main face
+  // Clear the canvas
+  ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
-  ctx.save(); // main clock save
+  // Draw the clock elements
+  drawClock();
 
-  //Setting Up canvas
-  ctx.clearRect(0, 0, 500, 500);
-  /*canvas by default starts at  (x,y)=(0,0) top left corner , but in this case we want it in the center so we translated the value+250 in both direction to get the center at (0,0) in a circle*/
-  ctx.translate(250, 250);
+  // Request the next animation frame
+  requestAnimationFrame(clock);
+}
+
+function drawClock() {
+  ctx.save();
+
+  // Setting up canvas
+  ctx.translate(centerX, centerY);
   ctx.rotate(-Math.PI / 2);
-  ctx.strokeStyle = "coral"; // stroke color setup
-  ctx.fillStyle = "#f5f5f5"; // inside the circle color
-  ctx.lineWidth = 3; // stroke width
-  ctx.lineCap = "round"; //rounded line at the edges
+  ctx.strokeStyle = "coral"; // Stroke color setup
+  ctx.fillStyle = "#f5f5f5"; // Inside the circle color
+  ctx.lineWidth = 3; // Stroke width
+  ctx.lineCap = "round"; // Rounded line at the edges
 
-  // clock face/border
+  // Clock face/border
   ctx.save();
   ctx.beginPath();
   ctx.lineWidth = 14;
-  ctx.arc(0, 0, 240, 0, Math.PI * 2, true); // Outer circle
+  ctx.arc(0, 0, centerX - 10, 0, Math.PI * 2, true); // Outer circle
   ctx.stroke();
   ctx.fill();
   ctx.restore();
 
-  //drawing hour marks
+  // Drawing hour marks
   ctx.save();
   ctx.lineWidth = 8;
-
   for (let i = 0; i < 12; i++) {
     ctx.beginPath();
     ctx.rotate(Math.PI / 6);
-    ctx.moveTo(220, 0);
-    ctx.lineTo(240, 0);
+    ctx.moveTo(centerX - 30, 0);
+    ctx.lineTo(centerX - 10, 0);
     ctx.stroke();
   }
   ctx.restore();
 
-  //drawing min marks
+  // Drawing minute marks
   ctx.save();
   ctx.lineWidth = 4;
-
   for (let i = 0; i < 60; i++) {
     if (i % 5 !== 0) {
       ctx.beginPath();
-      ctx.moveTo(233, 0);
-      ctx.lineTo(240, 0);
+      ctx.moveTo(centerX - 17, 0);
+      ctx.lineTo(centerX - 10, 0);
       ctx.stroke();
     }
     ctx.rotate(Math.PI / 30);
   }
-
   ctx.restore();
 
-  //getting current time
-  ctx.save();
+  // Getting current time
+  const now = new Date();
   const hour = now.getHours() % 12;
   const min = now.getMinutes();
   const sec = now.getSeconds();
 
-  console.log(`${hour % 12}:${min}:${sec}`);
+  // Drawing clock hands
+  drawHourHand(hour, min);
+  drawMinuteHand(min, sec);
+  drawSecondHand(sec);
 
-  //HOUR HAND
+  ctx.restore(); // Restore the initial state of the context
+}
+
+function drawHourHand(hr, min) {
   ctx.save();
-  const hourAngle = (Math.PI / 6) * hour + (Math.PI / 360) * min;
+  const hourAngle = (Math.PI / 6) * hr + (Math.PI / 360) * min;
   ctx.rotate(hourAngle);
   ctx.lineWidth = 14;
   ctx.beginPath();
@@ -73,8 +86,9 @@ function clock() {
   ctx.lineTo(70, 0);
   ctx.stroke();
   ctx.restore();
+}
 
-  //MINUTE HAND
+function drawMinuteHand(min, sec) {
   ctx.save();
   const minAngle = (Math.PI / 30) * min + (Math.PI / 1800) * sec;
   ctx.rotate(minAngle);
@@ -85,8 +99,9 @@ function clock() {
   ctx.lineTo(160, 0);
   ctx.stroke();
   ctx.restore();
+}
 
-  //SECONDS HAND
+function drawSecondHand(sec) {
   ctx.save();
   const secondAngle = (sec * Math.PI) / 30;
   ctx.rotate(secondAngle);
@@ -102,8 +117,7 @@ function clock() {
   ctx.arc(0, 0, 10, 0, Math.PI * 2, true);
   ctx.fill();
   ctx.restore();
-
-  ctx.restore(); //main clock restore
 }
 
-clock();
+// Start the clock animation
+requestAnimationFrame(clock);
