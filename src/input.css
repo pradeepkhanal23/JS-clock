@@ -7,12 +7,18 @@
   --box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 
-  --background-color: #fff;
-  --color: #333;
+  --background-color: #0b1a21;
 }
 
 body {
   min-height: 100vh;
   font-family: var(--font-family);
   font-size: 1rem;
+  background-color: var(--background-color);
+}
+
+canvas {
+  border-radius: 50%;
+  background: #0b1a21;
+  box-shadow: 5px 5px 0px #071015, -5px -5px 0px #0f242d;
 }
