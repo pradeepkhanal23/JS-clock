@@ -6,16 +6,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Sen:wght@500;700&display=swap"
       rel="stylesheet"
     />
     <link href="./src/output.css" rel="stylesheet" />
     <title>JS Clock Project</title>
   </head>
-  <body class="flex-col flex items-center justify-center">
-    <h1 class="text-4xl mb-5 text-white">JS Clock Project</h1>
-    <canvas id="canvas" width="400" height="400"></canvas>
+  <body>
+    <h1 class="text-white text-5xl text-center py-10 m-2">JS Canvas Clock</h1>
+    <div
+      class="max-w-5xl w-[95%] mx-auto lg:w-[80%] flex lg:flex-row flex-col gap-10 pb-5 mt-10 items-center"
+    >
+      <canvas id="canvas" width="500" height="500"></canvas>
+      <section
+        class="bg-[#f5f5f5] text-[#333] w-full max-w-md p-3 rounded-md sm:mx-auto"
+      >
+        <h2
+          class="text-center uppercase mb-2 tracking-tight font-bold underline"
+        >
+          Customize Clock
+        </h2>
+        <form class="flex flex-col" id="clock-styles">
+          <div
+            class="flex items-center gap-5 capitalize font-bold tracking-wider"
+          >
+            <label class="cursor-pointer" for="background-color"
+              >Background</label
+            >
+            <input type="color" value="#0b1a21" id="background-color" />
+          </div>
+          <hr />
+          <div
+            class="flex items-center gap-5 capitalize font-bold tracking-wider"
+          >
+            <label class="cursor-pointer" for="face-color">Face Color</label>
+            <input type="color" value="#0b1a21" id="face-color" />
+          </div>
+          <hr />
+
+          <div
+            class="flex items-center gap-5 capitalize font-bold tracking-wider"
+          >
+            <label class="cursor-pointer" for="border-color">border </label>
+            <input type="color" value="#f0f4f8" id="border-color" />
+          </div>
+          <hr />
+
+          <div
+            class="flex items-center gap-5 capitalize font-bold tracking-wider"
+          >
+            <label class="cursor-pointer" for="hour-min-mark-color"
+              >Marking</label
+            >
+            <input type="color" value="#6f6e75" id="hour-min-mark-color" />
+          </div>
+          <hr />
+
+          <div
+            class="flex items-center gap-5 capitalize font-bold tracking-wider"
+          >
+            <label class="cursor-pointer" for="hour-hand-color"
+              >hour hand</label
+            >
+            <input type="color" value="#fd115d" id="hour-hand-color" />
+          </div>
+          <hr />
+
+          <div
+            class="flex items-center gap-5 capitalize font-bold tracking-wider"
+          >
+            <label class="cursor-pointer" for="minute-hand-color"
+              >min hand
+            </label>
+            <input type="color" value="#276c9f" id="minute-hand-color" />
+          </div>
+          <hr />
+
+          <div
+            class="flex items-center gap-5 capitalize font-bold tracking-wider"
+          >
+            <label class="cursor-pointer" for="second-hand-color"
+              >second hand
+            </label>
+            <input type="color" value="#ffffff" id="second-hand-color" />
+          </div>
+
+          <button
+            type="submit"
+            class="py-1 px-4 mt-3 rounded-md bg-[#333] text-[#f5f5f5] save-btn"
+          >
+            Save as Image
+          </button>
+        </form>
+      </section>
+    </div>
     <script src="./index.js"></script>
   </body>
 </html>
