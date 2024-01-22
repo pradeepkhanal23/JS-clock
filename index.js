@@ -66,7 +66,7 @@ function drawClock() {
   ctx.translate(centerX, centerY);
   ctx.rotate(-Math.PI / 2);
 
-  // Updating colors and styles for the neumorphism style
+  // Updating colors and styles for the clock
   ctx.strokeStyle = borderColor.value;
   ctx.lineWidth = 4;
   ctx.fillStyle = faceColor.value; // Dark background color
