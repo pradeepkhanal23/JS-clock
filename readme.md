@@ -3,6 +3,8 @@
 A simple yet customizable JavaScript Canvas Clock project.
 ![Project Screenshot](./src/images/canvas-clock.png)
 
+[Live Demo](https://canvas-clock-js.netlify.app/)
+
 ## Overview
 
 The JS Canvas Clock project provides a visually appealing and interactive clock using HTML canvas (web API) and JavaScript. Users can customize the clock's appearance by adjusting various parameters such as background color, face color, border color, marking color, hour hand color, minute hand color, and second hand color.
